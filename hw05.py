@@ -1,24 +1,56 @@
 """
-Name: (put your name here)
+Name: Rouan Chen
 Peers: (add any collaborators)
 References: (anything you checked to solve this)
 """
 
 def get_letter():
-    """ Add your own Docstring """
-    # remove the default return and add your code
-    return ""
+    """ get a single uppercase letter, A, B,or C from the user with input validation. """
+    while True:
+        text = input("Give an single uppercase letter: ")
+        if len(text) != 1:
+            print("Error: it needs to be s single character.")
+            continue
+        if text not in ["A", "B", "C"]:
+            print("Error: You proovided the wrong character.")
+            continue
+        return text
 
 def get_digit():
-    """ Add your own Docstring """
-    # remove the default return and add your code
-    return 0
+    """ get a single digit 1, 2, or 3 from the user with input validation """
+    while True:
+        text = input("Give an single number character: ")
+        if not text.isdigit():
+            print("Error: your input should be only digits.")
+            continue
+        if text not in ["1", "2", "3"]:
+            print("Error: a single digit needs to be i [1,3].")
+            continue
+        return text
 
 
 def check_pattern(letter, digit, lst):
-    """ Add your own Docstring """
-    # remove the default pass and add your code
-    pass
+    """ Check the list of strings for words containing letter followed by digit, and print them. """
+    print("Strings with the pattern:")
+    matched_words = []
+    
+    for word in lst:
+        found_letter_first = False
+        match_found = False
+        
+        for ch in word:
+            if not found_letter_first and ch == letter:
+                found_letter_first = True
+            elif found_letter_first and ch ==digit:
+                match_found = True
+                break
+        if match_found:
+            if word not in matched_words:
+                matched_words.append(word)
+                
+    for word in matched_words:
+        print(word, end=" ")
+    print()
 
 
 #  The function main is INCOMPLETE, you must finish it
@@ -42,7 +74,14 @@ def main ():
     # ADD YOUR CODE UNDER THIS LINE
     # -------------------------------------------------
 
-    # Your code Here
+    while True:
+        letter = get_letter()
+        digit = get_digit()
+        check_pattern(letter, digit, st_list)
+        
+        choice = input("Try Again? (y/n): ")
+        if choice != 'y':
+            break
 
     # -------------------------------------------------
     # No need to modify anything Below this line
